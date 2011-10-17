@@ -1,9 +1,8 @@
 class Hello
-  include Cinch::Plugin
+  include Responsive
 
   Greeting = /\b(hello|hi|hallo|hallihallo|na|welcome|howdy|oi|oioi|greetings|fuck)\b/i
 
-  prefix lambda{ |m| m.bot.nick + ": " }
   match Greeting
 
   def execute(m)

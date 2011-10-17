@@ -16,6 +16,9 @@ else
   Bundler.require(:default)
 end
 
+$:.unshift File.expand_path('../../lib', __FILE__)
+require 'responsive'
+
 
 require 'active_support/core_ext/string/conversions'
 

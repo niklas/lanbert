@@ -2,9 +2,8 @@ require 'open-uri'
 require 'cgi'
 
 class UrbanDictionary
-  include Cinch::Plugin
+  include Responsive
 
-  prefix lambda{ |m| m.bot.nick + ": " }
   match /urban (.+)/
   def lookup(word)
     url = "http://www.urbandictionary.com/define.php?term=#{CGI.escape(word)}"
