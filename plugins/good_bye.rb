@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class GoodBye
   include Cinch::Plugin
 
@@ -9,6 +11,7 @@ class GoodBye
     'kthxbai',
     'ciao',
     'winkewinke',
+    'tschüssi',
     'later, alligator',
     'cu2, kangaroo'
   ]
