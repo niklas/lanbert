@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+debug = ENV['DEBUG']
+require 'pry' if debug
+require 'cinch'
+$:.unshift File.expand_path('../../plugins', __FILE__)
+
+channel = "#lanpartei"
+nick    = debug ? 'lanny_test' : 'lanny'
+
+bot = Cinch::Bot.new do
+  configure do |c|
+    c.server          = "irc.freenode.org"
+    c.nick            = nick
+    c.channels        = [channel]
+    c.verbose         = true
+    c.plugins.plugins = [Hello, Cijoe]
+  end
+end
+
+#Thread.new { listen to something }
+
+bot.start
