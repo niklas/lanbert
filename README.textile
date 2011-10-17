@@ -1,0 +1,21 @@
+h1. lanbert
+
+h2. Intro
+
+This is the bot hanging out in #lanpartei on freenode.
+
+h2. Running
+
+# install "RVM":rvm.beginrescueend.com
+# clone this repo, cd into it
+# `gem install bundler --no-rdoc --no-ri`
+# bundle
+# guard
+
+The last command is optional, it will start the bot in test mode. You can change the channel and name in the `config.yml` file.
+
+h2. Contributing
+
+Plugins are easy, just look at the existing ones or the "cinch examples":https://github.com/cinchrb/cinch/tree/master/examples/plugins
+
+Please fork and send be a pull request.
