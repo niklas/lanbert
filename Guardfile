@@ -5,7 +5,7 @@ guard 'bundler' do
 end
 
 guard 'process', :name => 'bot', :command => 'ruby bin/live',
-  :env => {}, :stop_signal => "KILL"  do
+  :env => {}, :stop_signal => "USR1"  do
 
   watch('Gemfile.lock')
   watch(%r~plugins/.+$~)

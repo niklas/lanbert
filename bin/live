@@ -34,5 +34,8 @@ bot = Cinch::Bot.new do
 end
 
 #Thread.new { listen to something }
+Signal.trap("USR1") do
+  bot.dispatch :good_bye # this quits
+end
 
 bot.start
