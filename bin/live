@@ -12,7 +12,13 @@ if debug
 else
   Bundler.require(:default)
 end
-$:.unshift File.expand_path('../../plugins', __FILE__)
+
+require 'active_support/core_ext/string/conversions'
+
+plugins = Dir[ File.expand_path('../../plugins/*.rb', __FILE__) ].map do |rb|
+  load rb
+  File.basename(rb).sub(/\.rb$/,'').classify.constantize
+end
 
 channel = "#lanpartei"
 nick = 'lanbert'
@@ -23,7 +29,7 @@ bot = Cinch::Bot.new do
     c.nick            = debug ? "#{nick}_test" : nick
     c.channels        = [channel]
     c.verbose         = true
-    c.plugins.plugins = []
+    c.plugins.plugins = plugins
   end
 end
 
