@@ -4,7 +4,7 @@ class Hello
   Greeting = /\b(hello|hi|hallo|hallihallo|na|welcome|howdy|oi|oioi|greetings|fuck)\b/i
 
   prefix lambda{ |m| m.bot.nick + ": " }
-  match Greeting, :use_prefix => false
+  match Greeting
 
   def execute(m)
     if m.message =~ Greeting
