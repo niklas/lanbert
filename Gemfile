@@ -4,6 +4,7 @@ gem 'cinch'
 
 group :development do
   gem 'pry'
+  gem 'libnotify'
 end
 
 gem 'activesupport', :require => false
