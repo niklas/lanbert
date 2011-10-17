@@ -4,21 +4,23 @@ require 'rubygems'
 require 'bundler/setup'
 
 
-channel = "#lanpartei"
-nick = 'lanbert'
+localhost = `hostname`.chomp
+debug = localhost != 'soykaf'
 
-if ENV['DEBUG']
+if debug
   Bundler.require(:default, :development)
-  nick += '_test'
 else
   Bundler.require(:default)
 end
 $:.unshift File.expand_path('../../plugins', __FILE__)
 
+channel = "#lanpartei"
+nick = 'lanbert'
+
 bot = Cinch::Bot.new do
   configure do |c|
     c.server          = "irc.freenode.org"
-    c.nick            = nick
+    c.nick            = debug ? "#{nick}_test" : nick
     c.channels        = [channel]
     c.verbose         = true
     c.plugins.plugins = []
