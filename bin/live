@@ -4,16 +4,16 @@ require 'rubygems'
 require 'bundler/setup'
 
 
+channel = "#lanpartei"
+nick = 'lanbert'
+
 if ENV['DEBUG']
   Bundler.require(:default, :development)
-  nick = 'lanny_test'
+  nick += '_test'
 else
   Bundler.require(:default)
-  nick = 'lanny'
 end
 $:.unshift File.expand_path('../../plugins', __FILE__)
-
-channel = "#lanpartei"
 
 bot = Cinch::Bot.new do
   configure do |c|
