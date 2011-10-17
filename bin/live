@@ -3,15 +3,19 @@
 require 'rubygems'
 require 'bundler/setup'
 
+require 'ostruct'
+parsed_yaml = YAML.parse_file(File.expand_path('../../config.yml', __FILE__)).to_ruby
+config = OpenStruct.new parsed_yaml
 
 localhost = `hostname`.chomp
-debug = localhost != 'soykaf'
+debug = localhost != config.host
 
 if debug
   Bundler.require(:default, :development)
 else
   Bundler.require(:default)
 end
+
 
 require 'active_support/core_ext/string/conversions'
 
@@ -20,14 +24,11 @@ plugins = Dir[ File.expand_path('../../plugins/*.rb', __FILE__) ].map do |rb|
   File.basename(rb).sub(/\.rb$/,'').classify.constantize
 end
 
-channel = "#lanpartei"
-nick = 'lanbert'
-
 bot = Cinch::Bot.new do
   configure do |c|
-    c.server          = "irc.freenode.org"
-    c.nick            = debug ? "#{nick}_test" : nick
-    c.channels        = [channel]
+    c.server          = config.server
+    c.nick            = debug ? "#{config.nick}_test" : config.nick
+    c.channels        = [config.channel]
     c.verbose         = true
     c.plugins.plugins = plugins
   end
