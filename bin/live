@@ -1,26 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
-require 'bundler/setup'
-
-require 'ostruct'
-parsed_yaml = YAML.parse_file(File.expand_path('../../config.yml', __FILE__)).to_ruby
-config = OpenStruct.new parsed_yaml
-
-localhost = `hostname`.chomp
-debug = localhost != config.host
-
-if debug
-  Bundler.require(:default, :development)
-else
-  Bundler.require(:default)
-end
-
-$:.unshift File.expand_path('../../lib', __FILE__)
-require 'responsive'
-
-
-require 'active_support/core_ext/string/conversions'
+require File.expand_path('../../config/environment', __FILE__)
 
 plugins = Dir[ File.expand_path('../../plugins/*.rb', __FILE__) ].map do |rb|
   load rb

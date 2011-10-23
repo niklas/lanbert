@@ -10,6 +10,7 @@ group 'develop' do
     watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
     watch(%r{^plugins/(.+)\.rb$})     { |m| "spec/plugins/#{m[1]}_spec.rb" }
     watch('spec/spec_helper.rb')  { "spec" }
+    watch('config/environment.rb')  { "spec" }
   end
 end
 
