@@ -7,7 +7,7 @@ group :development do
   gem 'libnotify'
   gem 'rspec'
   gem 'guard-rspec'
-  gem 'fakefs'
+  gem 'fakefs', :require => false
 end
 
 gem 'activesupport', :require => false
