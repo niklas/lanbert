@@ -5,6 +5,9 @@ gem 'cinch'
 group :development do
   gem 'pry'
   gem 'libnotify'
+  gem 'rspec'
+  gem 'guard-rspec'
+  gem 'fakefs'
 end
 
 gem 'activesupport', :require => false
