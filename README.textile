@@ -2,7 +2,7 @@ h1. cilea
 
 h2. Intro
 
-This is the bot hanging out in #lanpartei on freenode.
+This is the bot hanging out in #shiftplan on freenode.
 
 h2. Running
 
