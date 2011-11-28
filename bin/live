@@ -9,9 +9,9 @@ end
 
 bot = Cinch::Bot.new do
   configure do |c|
-    c.server          = config.server
-    c.nick            = debug ? "#{config.nick}_test" : config.nick
-    c.channels        = [config.channel]
+    c.server          = Bot.config.server
+    c.nick            = Bot.debug? ? "#{Bot.config.nick}_test" : Bot.config.nick
+    c.channels        = [Bot.config.channel]
     c.verbose         = true
     c.plugins.plugins = plugins
   end
