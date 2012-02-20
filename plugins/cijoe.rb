@@ -3,24 +3,21 @@ class Cijoe
   include Cinch::Plugin
 
   listen_to :failed, :method => :failed
-  def failed(m, report)
-    tell %Q~build failed: #{format_report report}~, report
+  def failed(m, args)
+    tell "build_failed", Report.new(args)
   end
 
   listen_to :worked, :method => :worked
   def worked(m, report)
-    tell %Q~build success: #{format_report report}~, report
+    tell "build_success", Report.new(args)
   end
 
   private
 
-  def format_report(report)
-    %Q~(#{report.author}) #{report.message} [#{report.sha}]~
-  end
-
   def tell(message, report)
+    full = "#{message}: #{report}"
     channel = report.channel || bot.channels.first.name
-    Channel(channel).send(message)
+    Channel(channel).send(full)
   end
 
   class Report
@@ -29,12 +26,16 @@ class Cijoe
       attr_accessor wanted.downcase.to_sym
     end
     attr_reader :channel
-    def initialize(channel, env)
-      @channel = channel
+    def initialize(env)
+      @channel = env.delete(:channel)
       Wanted.each do |wanted|
         self.send("#{wanted.downcase}=", env[wanted])
       end
     end
+    def to_s
+      %Q~(#{author}) #{message} [#{sha}]~
+    end
+
   end
 
 end

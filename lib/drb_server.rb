@@ -9,14 +9,11 @@ class DrbServer
     @channel = channel
   end
 
-  def notify(status, args={})
-    report = Report.new(channel, args.to_hash)
+  Events = %w(worked failed deployed)
 
-    case status
-    when 'worked'
-      bot.dispatch(:worked, nil, report)
-    when 'failed'
-      bot.dispatch(:failed, nil, report)
+  def notify(event, args={})
+    if Events.include?(event)
+      bot.dispatch(event.to_sym, nil, args.to_hash.merge(:channel => channel))
     end
   end
 
