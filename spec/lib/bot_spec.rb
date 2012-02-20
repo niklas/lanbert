@@ -12,4 +12,9 @@ describe Bot do
 
     Bot.root.join('spec/spec_helper.rb').should exist_in_filesystem
   end
+
+  it "should provide class accessor to array of plugins" do
+    Bot.plugins.should be_a(Array)
+    Bot.plugins.should_not be_empty
+  end
 end

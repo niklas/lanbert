@@ -2,18 +2,13 @@
 
 require File.expand_path('../../config/environment', __FILE__)
 
-plugins = Dir[ File.expand_path('../../plugins/*.rb', __FILE__) ].map do |rb|
-  load rb
-  File.basename(rb).sub(/\.rb$/,'').classify.constantize
-end
-
 bot = Cinch::Bot.new do
   configure do |c|
     c.server          = Bot.config.server
     c.nick            = Bot.debug? ? "#{Bot.config.nick}_test" : Bot.config.nick
     c.channels        = [Bot.config.channel]
     c.verbose         = true
-    c.plugins.plugins = plugins
+    c.plugins.plugins = Bot.plugins
   end
 end
 

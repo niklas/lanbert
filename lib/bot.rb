@@ -9,6 +9,14 @@ class Bot
     @config ||= load_config
   end
 
+  def self.plugins=(found_plugins)
+    @plugins = found_plugins
+  end
+
+  def self.plugins
+    @plugins || []
+  end
+
   def self.load_config
     parsed_yaml = YAML.parse_file(File.expand_path('../../config.yml', __FILE__)).to_ruby
     OpenStruct.new parsed_yaml
