@@ -14,4 +14,5 @@ require 'active_support/core_ext/class/attribute'
 require 'active_support/core_ext/string/conversions'
 
 require 'responsive'
+require 'drb_server'
 

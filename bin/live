@@ -22,6 +22,6 @@ Signal.trap("USR1") do
   bot.dispatch :good_bye # this quits
 end
 
-Thread.new { Cijoe::Server.listen(bot, Bot.config.channel) }
+Thread.new { DrbServer.listen(bot, Bot.config.channel) }
 
 bot.start
