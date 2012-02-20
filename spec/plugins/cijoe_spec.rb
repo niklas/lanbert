@@ -25,3 +25,31 @@ describe Cijoe::Report do
   end
 
 end
+
+describe Cijoe do
+  let(:bot) do
+    Cinch::Bot.new do
+      configure do |c|
+        c.server          = 'the server'
+        c.nick            = 'ololadin'
+        c.channels        = ['nr5']
+        c.verbose         = true
+        c.plugins.plugins = []
+      end
+    end
+  end
+  let(:plugin) { Cijoe.new bot }
+  let(:report) { mock 'Report' }
+
+  it "tells the channel about failed build" do
+    Cijoe::Report.should_receive(:new).with(a: 23).and_return(report)
+    plugin.should_receive(:tell).with('build failed', report)
+    plugin.failed nil, a: 23
+  end
+
+  it "tells the channel about successful build" do
+    Cijoe::Report.should_receive(:new).with(a: 42).and_return(report)
+    plugin.should_receive(:tell).with('build successful', report)
+    plugin.worked nil, a: 42
+  end
+end

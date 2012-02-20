@@ -4,12 +4,12 @@ class Cijoe
 
   listen_to :failed, :method => :failed
   def failed(m, args)
-    tell "build_failed", Report.new(args)
+    tell "build failed", Report.new(args)
   end
 
   listen_to :worked, :method => :worked
-  def worked(m, report)
-    tell "build_success", Report.new(args)
+  def worked(m, args)
+    tell "build successful", Report.new(args)
   end
 
   private
