@@ -1,4 +1,3 @@
-require 'drb'
 class Cijoe
   include Cinch::Plugin
 

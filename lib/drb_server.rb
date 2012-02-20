@@ -1,3 +1,4 @@
+require 'drb'
 class DrbServer
   def self.listen(*a)
     new(*a).start
