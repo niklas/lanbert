@@ -38,7 +38,7 @@ describe Cijoe do
       end
     end
   end
-  let(:plugin) { Cijoe.new bot }
+  let(:plugin) { described_class.new bot }
   let(:report) { mock 'Report' }
 
   it "tells the channel about failed build" do
