@@ -16,7 +16,7 @@ describe Capistrano do
 
   it "tells the channel about deployment with given version" do
     plugin.should_receive(:tell).with("new version deployed: #{version}")
-    plugin.deployed nil, version: version
+    plugin.deployed nil, 'version' => version
   end
 
   let "leaves out version if non supplied" do
