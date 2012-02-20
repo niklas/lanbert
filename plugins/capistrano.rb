@@ -2,8 +2,12 @@ class Capistrano
   include Cinch::Plugin
 
   listen_to :deployed, :method => :deployed
-  def deployed(m, version)
-    tell "new version deployed: #{version}"
+  def deployed(m, args={})
+    if version = args['version']
+      tell "new version deployed: #{version}"
+    else
+      tell "new version deployed"
+    end
   end
 
   private

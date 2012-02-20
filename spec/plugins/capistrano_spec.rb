@@ -14,9 +14,14 @@ describe Capistrano do
   let(:version) { '0.0.7 james-bond-edition' }
   let(:plugin)  { described_class.new bot }
 
-  it "tells the channel about failed build" do
+  it "tells the channel about deployment with given version" do
     plugin.should_receive(:tell).with("new version deployed: #{version}")
-    plugin.deployed nil, version
+    plugin.deployed nil, version: version
+  end
+
+  let "leaves out version if non supplied" do
+    plugin.should_receive(:tell).with("new version deployed")
+    plugin.deployed nil
   end
 
 end
